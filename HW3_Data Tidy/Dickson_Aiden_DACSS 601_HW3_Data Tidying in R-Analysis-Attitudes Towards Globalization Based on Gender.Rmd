@@ -1,0 +1,110 @@
+---
+title: "Attitudes Towards Globalization Based on Gender"
+author: "Aiden Dickson"
+date: "04/11/2021"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+## Introduction: This analysis of attitudes regarding globalization, based on gender, is taken from a sample of 1008 survey participants, 18 years of age or older, living in the United States, (304 respondents were interviewed on a land-line telephone, and 704 were interviewed on a mobile phone, including 469 who had no landline telephone). The survey was conducted under the direction of SSRS. It is a study of overall attitudes towards globalization with a larger scope of demographic features such as religion, race and political persuasion.
+
+## Importing and Setting Up Libraries:
+
+```{r libraries}
+if (!require('tidyverse')) install.packages('tidyverse')
+if (!require('haven')) install.packages('haven')
+if (!require('dplyr')) install.packages('dplyr')
+if (!require('knitr')) install.packages('knitr')
+if (!require('tinytex')) install.packages('tinytex')
+
+library(tidyverse)
+library(haven)
+library(dplyr)
+library(knitr)
+library(tinytex)
+
+install_tinytex()
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Importing Dataset from Google Drive and Viewing Dimensions:
+
+```{r Dataset Import and Dimensions}
+us_data<-read_sav("/Volumes/GoogleDrive/My Drive/DataSets/United_States_April_2020_Topline_WEB_FINAL.sav")
+
+dim(us_data)
+```
+
+## Creating Table of Analytic Interest with Two Columns: Sex (Sex of respondent): ‘1’ for ‘Male’, ‘2’ for ‘Female’, and Q4 (Response to ‘Overall has globalization in the past few years been good for the United States?’):  ‘1’ =‘Good’, ‘2’ =‘Bad’, ‘3’=‘Both Good and Bad’, and ‘9’=‘DK/Refused to Q4’.  (Additionally, viewing new dimensions at top, still including 1008 rows, but only printing out top 10 here):
+
+```{r Creating Table of Analytic Interest with Two Columns}
+tibble_Q4Ans_eaGender <-select(us_data, sex, Q4) 
+dim(tibble_Q4Ans_eaGender)
+print(tibble_Q4Ans_eaGender, n = 10)
+```
+
+## Mutate for new 'Gender' Column in larger dataset to Show Labels 'Male' or 'Female' instead of numerical code:
+
+```{r Mutate for new Gender Column with Text Labels}
+us_data<-us_data %>% 
+    mutate(Gender = case_when( 
+    sex == 1 ~ 'Male',
+    sex == 2 ~ 'Female')) 
+
+select (us_data, sex, Gender)
+```
+
+## Mutate for new 'Answers' Column in larger dataset to Show Labels 'Bad','Good', 'Both Good and Bad' and 'DK/Refused' in place of numerical code:
+
+```{r Mutate for new Answers Column with Text Labels}
+us_data <- us_data %>% 
+      mutate(Answers = case_when(
+           Q4 == 1 ~ 'Good',
+           Q4 == 2 ~ 'Bad',
+           Q4 == 3 ~ 'Both good and bad',
+           Q4 == 9 ~ 'DK/Refused'
+      ))
+select (us_data, Q4, Answers)
+```
+
+## Tibble for Labeled Answers per Labeled Gender. *Only printing top ten here:
+
+```{r Tibble with Labled Answers per Labeled Gender}
+Answers_Per_Gendr_Tibble<- select (us_data, Gender, Answers)
+print(Answers_Per_Gendr_Tibble, n=10)
+
+```
+
+
+## One Proportional Table for Each Variable, each converted to percent.  Then a Crosstab-type table for both, converted to proportional and finally percent:
+
+```{r  Percentage tables, one for Gender, one for Answers, one for both- xtabs}
+Perc_Gendr_Tibble<- Answers_Per_Gendr_Tibble %>%
+  select(Gender) %>%
+  table() %>%
+  prop.table()*100
+
+Perc_Ans_Tibble<- Answers_Per_Gendr_Tibble %>%
+  select(Answers) %>%
+  table() %>%
+  prop.table()*100
+
+
+print(Perc_Gendr_Tibble)
+
+print(Perc_Ans_Tibble)
+
+prop.table(xtabs(~ Gender + Answers, us_data))*100
+```
+
+## Observations: We can observe that there is an even split between the answers of ‘Good’ or ‘Bad’ to the question ‘Has globalization in the past few years been good for the United States?’ within female participants (Females: ‘Good’=22.03% and ‘Bad’=22.03%), unlike the the clearly uneven split among male participants (Males: ‘Good’= 26.42% and ‘Bad’= 21.54%)
+
+## It can also be noted, more female participants answered ‘Bad’ in response to the question of globalization value for the US in past few years than male participants. 22.03% female participants answered ‘Bad’ vs 21.53% of male participants responding ‘Bad’. Additionally, more male participants responded to the question, of globalization in past few years as being good for the US (Males: ‘Good’=26.42, Females: ‘Good’=22.03). Any difference of value in these 4 comparisons are so slight that they are most likely not statistically significant, but before making this conclusion with confidence, this significance will be measured in a later analysis, as well as removal of some ‘noise’ such as the incidents where the participants refused an answer will be omitted.  (Homeworks 4-6)
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+name: shiny_app_directory_workspace
+title:
+username:
+account: aidenflowers
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4063533
+bundleId: 4544736
+url: https://aidenflowers.shinyapps.io/shiny_app_directory_workspace/
+when: 1619910733.08472
+lastSyncTime: 1619910733.08473

@@ -1,0 +1,175 @@
+---
+title: "Attitudes Towards Globalization Based on Gender"
+author: "Aiden Dickson"
+date: "04/26/2021" 
+output:
+  pdf_document: default
+  word_document: default
+---
+## ------ HOMEWORK 3 SECTION -Introductory Tidying: ---------------
+
+## Introduction: This analysis of attitudes regarding globalization, based on gender, is taken from a sample of 1008 survey participants, 18 years of age or older, living in the United States, (304 respondents were interviewed on a land-line telephone, and 704 were interviewed on a mobile phone, including 469 who had no landline telephone). The survey was conducted under the direction of SSRS. It is a study of overall attitudes towards globalization with a larger scope of demographic features such as religion, race and political persuasion. 
+
+## Importing and Setting Up Libraries:
+
+```{r libraries}
+if (!require('tidyverse')) install.packages('tidyverse')
+if (!require('haven')) install.packages('haven')
+if (!require('dplyr')) install.packages('dplyr')
+if (!require('knitr')) install.packages('knitr')
+if (!require('tinytex')) install.packages('tinytex')
+if (!require('ggplot2')) install.packages('ggplot2')
+if (!require('rsconnect')) install.packages('rsconnect')
+if (!require('shiny')) install.packages('shiny')
+
+library(tidyverse)
+library(haven)
+library(dplyr)
+library(knitr)
+library(tinytex)
+library(ggplot2)
+library(rsconnect)
+library(shiny)
+
+rsconnect::setAccountInfo(name='aidenflowers', token='C9B503D0A879598A1DD5EADDD40E2437', secret='SqcUO3uMQeQrw80FOVh+E5UoHOhxFs1Mb1U1tfKK')
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Importing Dataset from Google Drive and Viewing Dimensions:
+```{r Dataset Import and Dimensions}
+us_data<-read_sav("/Volumes/GoogleDrive/My Drive/Classes Spring 2021/Classes -Data Analysis- R/DataSets/United_States_April_2020_Topline_WEB_FINAL.sav") %>%
+  as_factor()
+
+dim(us_data)
+```
+
+## Creating Table of Analytic Interest with Two Columns: Sex (Sex of respondent): ‘1’ for ‘Male’, ‘2’ for ‘Female’, and Q4 (Response to ‘Overall has globalization in the past few years been good for the United States?’):  ‘1’ =‘Good’, ‘2’ =‘Bad’, ‘3’=‘Both Good and Bad’, and ‘9’=‘DK/Refused to Q4’.  (Additionally, viewing new dimensions at top, still including 1008 rows, but only printing out top 10 here):
+
+```{r Creating Table of Analytic Interest with Two Columns}
+tibble_Q4Ans_eaGender <-select(us_data, sex, Q4) 
+dim(tibble_Q4Ans_eaGender)
+print(tibble_Q4Ans_eaGender, n = 10)
+```
+
+## Mutate for new 'Gender' Column in larger dataset to Show Labels 'Male' or 'Female' instead of numerical code:
+
+```{r Mutate for new Gender Column with Text Labels}
+us_data<-us_data %>% 
+    mutate(Gender = case_when( 
+    sex == 1 ~ 'Male',
+    sex == 2 ~ 'Female')) 
+
+select (us_data, sex, Gender)
+```
+
+## Mutate for new 'Answers' Column in larger dataset to Show Labels 'Bad','Good', 'Both Good and Bad' and 'DK/Refused' in place of numerical code:
+
+```{r Mutate for new Answers Column with Text Labels}
+us_data <- us_data %>% 
+      mutate(Answers = case_when(
+           Q4 == 1 ~ 'Good',
+           Q4 == 2 ~ 'Bad',
+           Q4 == 3 ~ 'Both good and bad',
+        
+      ))
+select (us_data, Q4, Answers)
+```
+
+## Tibble for Labeled Answers per Labeled Gender. *Only printing top ten here:
+
+```{r Tibble with Labled Answers per Labeled Gender}
+Answers_Per_Gendr_Tibble<- select (us_data, Gender, Answers)
+print(Answers_Per_Gendr_Tibble, n=10)
+
+```
+
+
+## One Proportional Table for Each Variable, each converted to percent.  Then a Crosstab-type table for both, converted to proportional and finally percent:
+
+```{r  Percentage tables, one for Gender, one for Answers, one for both- xtabs}
+Perc_Gendr_Tibble<- Answers_Per_Gendr_Tibble %>%
+  select(Gender) %>%
+  table() %>%
+  prop.table()*100
+
+Perc_Ans_Tibble<- Answers_Per_Gendr_Tibble %>%
+  select(Answers) %>%
+  table() %>%
+  prop.table()*100
+
+
+print(Perc_Gendr_Tibble)
+
+print(Perc_Ans_Tibble)
+
+perc_tibble <-prop.table(xtabs(~ Gender + Answers, us_data))*100
+print(perc_tibble)
+```
+
+
+
+## [Discovered I needed to change the 'Mutate' function above to not include 'NA' explicitly assigned, to simply not account for it in 'Mutate', so it will be omitted].  In the bar graph below is the distribution of answers without discerning gender.
+
+```{r}
+
+us_data %>%
+    filter(! is.na(Answers)) %>%
+    ggplot(aes(Answers)) + geom_bar() +
+    theme_bw() + scale_y_continuous(labels = scales:: percent_format(accuracy=1))
+    labs(title = "Attitudes Regarding if Globalization in US in the Past Few Years Has Been 'Good'", y = "Magnitude", x = "Answers") 
+# Is not displaying specified y-axis label
+    ```
+## ------HOMEWORK 4 SECTION -Visualization [and a little more tidying]: -----
+
+## 1. What the Visualization demonstrates:
+
+## We can observe that there is an even split between the answers of ‘Good’ or ‘Bad’ to the question ‘Has globalization in the past few years been good for the United States?’ within female participants (Females: ‘Good’=22.03% and ‘Bad’=22.03%), unlike the the clearly uneven split among male participants (Males: ‘Good’= 26.42% and ‘Bad’= 21.54%)
+
+## It can also be noted, more female participants answered ‘Bad’ in response to the question of globalization value for the US in past few years than male participants. 22.03% female participants answered ‘Bad’ vs 21.53% of male participants responding ‘Bad’. Additionally, more male participants responded to the question, of globalization in past few years as being good for the US (Males: ‘Good’=26.42, Females: ‘Good’=22.03). Any difference of value in these 4 comparisons are so slight that they are most likely not statistically significant, but before making this conclusion with confidence, this significance will be measured in a later analysis.
+
+```{r}
+
+
+us_data %>%
+    filter(! is.na(Answers)) %>%
+    ggplot(aes(Answers, fill = Gender)) + geom_bar() +
+    theme_bw() + scale_y_continuous(labels = scales:: percent_format(accuracy=1))
+    labs(title = "Attitudes Regarding if Globalization in US in the Past Few Years Has Been 'Good'", y = "Percent", x = "Answers") 
+# Is not displaying specified y-axis label
+
+```
+
+## 2. I chose the Bar Chart / Histogram, due to the way it lends well to a comparison of numeric values [a percentage of summation of survey responses depending on category, based on closed-ended answers] between discrete nominal variables [Bad, Both Good and Bad, Good].  The choice of color coding of male and female responses also lended well, basically overlapping 2 histograms with the potential for more categories depending on the demographic variable.  At first I thought of doing the grouping type histogram,  one grouping for males and a second grouping for females which would result in only two histograms side by side, so I decided this would not lend itself as well to comparison as the bi-chromatic overlap-type histogram.
+
+## 3. What I wished if anything I could have executed but found limited capacity to do: I attempted to do a 'gather' operation so graph displays percentages along the y axis, using perc_tibble but it didn't work due to the r not able to treat 'xtabs object' like a tibble. Figured out how to do this within the ggplot code and added '+ labs(title = "Attitudes Regarding if Globalization in US in the Past Few Years above'. Precision of sig figs 3 zeroes past decimal is a bit much but have yet to find how to pare this.
+
+```{r}
+#Gathered_Perc_Tibble <- gather(perc_tibble, key = "Answer", value = "Percent", -c("Gender"))
+#print(Gathered_Perc_Tibble)
+
+```
+
+
+## ------HOMEWORK 5 SECTION - Advancing Visualization [and Advancing Tidying]: -----
+
+
+## Refinements made to former work after learning more:
+
+- Edited code to load dataset so it will have *labels this time via haven's as_factor() function piped on the end of a read_sav() operation.  Before I just used mutate, thinking I was required to re-add labels this way.
+   - Will ensure to keep category of answer 'Don't know and refused' in any 'mutate' per suggestion in various R projects, in forthcoming work.
+   - Will be attempting to calculate summaries of the data that are now *weighted, to make sure estimates are representative of the population.
+   
+
+## In following will be attempting plot of x-tabs table with 3 demographic variables [Political View, Income and Level of Education] and a weighted estimate summing the percentage of a given category of answer 
+
+
+
+
+
+
+
+
+
+
