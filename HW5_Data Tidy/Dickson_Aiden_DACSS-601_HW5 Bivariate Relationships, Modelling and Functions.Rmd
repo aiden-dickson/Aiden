@@ -48,7 +48,7 @@ us_data<-read_sav("/Volumes/GoogleDrive/My Drive/Classes Spring 2021/Classes -Da
 as_factor()
 
 
-#us_data<-read_sav("./HW5_Data/United_States_April_2020_Topline_WEB_FINAL.sav") %>%
+#us_data<-read_sav("../HW5_Data/United_States_April_2020_Topline_WEB_FINAL.sav") %>%
 #as_factor()
 
 view(us_data)
