@@ -28,6 +28,8 @@ if (!require('tinytex')) install.packages('tinytex')
 if (!require('ggplot2')) install.packages('ggplot2')
 if (!require('forcats')) install.packages('forcats')
 if (!require('GGally')) install.packages('GGally')
+if (!require('googlesheets4')) install.packages('googlesheets4')
+   
 
 library(tidyverse)
 library(haven)
@@ -36,14 +38,20 @@ library(knitr)
 library(tinytex)
 library(ggplot2)
 library(GGally)
+library(googlesheets4) #in case want to try import of google sheets
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # 2.Importing Dataset -- (from Google Drive as Labelled Now) Viewing real dimensions and top few Rows as Example:
-```{r Dataset Import and Dimensions}
+```{r Dataset Import and Dimensions from Google or Local File}
 us_data<-read_sav("/Volumes/GoogleDrive/My Drive/Classes Spring 2021/Classes -Data Analysis- R/DataSets/United_States_April_2020_Topline_WEB_FINAL.sav") %>%
-  as_factor()
+as_factor()
 
+
+#us_data<-read_sav("./HW5_Data/United_States_April_2020_Topline_WEB_FINAL.sav") %>%
+#as_factor()
+
+view(us_data)
 dim(us_data)
 head(us_data, 10)
 ```
@@ -217,7 +225,7 @@ view(weighted_tibble_for_plot)
 # 9. Plotting the Weighted Results, First Removing the "Refused"
 ```{r fig.align="left"}
 plot <- weighted_tibble_for_plot %>% 
-  filter(!(Globalization_Answers %in% c("Refused "))) %>% 
+  filter(!(Globalization_Answers %in% c("Refused FG"))) %>% 
   filter(!(subgroup %in% 
                   c("Don't know", "Refused"))) %>% 
   ggplot(
