@@ -2,14 +2,14 @@
 
 #Page 1 Introduction ---------------------------------------
 intro_panel <- tabPanel(
-  "Intro Yo",
+  "Introduction",
   
   titlePanel("Characteristics of Mario Kart Drivers"),
   
-  img(src = "MarioKart.jpg", height = 225, widtth = 225),
+  img(src = "MarioKart.jpg", height = 225, width = 225),
   br(),  br(),
   
-  p("This is a test run."),  
+  p("Template of Histogram App from a Handy Tutorial - Keep this as Boilerplate / Springboard."),  
   p(a(href = "https://www.kaggle.com/barelydedicated/mariokart8?select=characters.csv", "Data Source [Kaggle]"))
 )
 
