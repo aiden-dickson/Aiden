@@ -3,6 +3,8 @@
 # Load libraries, data ------------------------------------------------
 library(ggplot2)#for histogram
 library(dplyr)
+library(DT)
+library(vtable)
 all_ages <- read.csv("data/all-ages.csv")
 all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
                    "Unemployment_Rate" = "Unemployment_rate", "Percentile_25th" = "P25th", "Percentile_75th" = "P75th")
@@ -38,9 +40,10 @@ server <- function(input, output) {
        
    })
    
-   # Generate a summary of the data ----
+   # Generate a summary of the data (Server)----
    output$summary <- renderPrint({
        summary(all_ages)
+     
    })
    
    # Generate an HTML table view of the data ----

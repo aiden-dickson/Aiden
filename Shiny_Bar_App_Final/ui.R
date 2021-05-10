@@ -3,6 +3,7 @@
 # Load libraries, Data ------------------------------------
 library(dplyr)
 library(DT)
+library(vtable)
 all_ages <- read.csv("data/all-ages.csv")
 
 
@@ -10,18 +11,8 @@ all_ages <- read.csv("data/all-ages.csv")
 
 first_tab <- tabPanel(
   "Introduction",
-  
   titlePanel("Economic Outcomes by College Major - Introduction"),
-  
-  img(src = "college_dorm.png", height = 200, width = 400),
-  br(),  br(),
-  
-  p("Analysis of Economic Outcomes by College Major."),  
-  
-  p(a(href = "https://www.kaggle.com/tunguz/college-majors?select=majors-list.csv", "Data Source [Kaggle]")),
-
-  p(a(href = "https://github.com/aiden-dickson/DACSS-601", "Github Repository"))
-  
+  includeMarkdown("intro.Rmd")
 )
 
 
@@ -46,13 +37,12 @@ sidebar_content <- sidebarPanel(
 main_content <- mainPanel(width = "12",
    # plotOutput("plot"),
    # width = "10",
-    # Output: Tabset w/ plot, summary, and table ----
+    # Output: Tabset w/ plot, summary, and table (UI)----
     tabsetPanel(type = "tabs", 
                 tabPanel("Plot", plotOutput("plot", height='800')),
-                tabPanel("Summary", verbatimTextOutput("summary")),
+                tabPanel("Summary", verbatimTextOutput('summary')),
                 tabPanel("Table", tableOutput("table"))
     )
-   
 )
 
 #Second Panel, using top section input, below section plot
