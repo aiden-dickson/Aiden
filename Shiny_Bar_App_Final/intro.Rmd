@@ -4,13 +4,25 @@ author: "Aiden Dickson"
 date: "May 10, 2021"
 output: html_document
 ---
-<img src="college_dorm.png" alt="College Dorm in Eve" width="400" height="200">
 
-<a href="https://www.kaggle.com/tunguz/college-majors?select=majors-list.csv">Data Source [Kaggle]</a>
-<br>
+<head>
+<link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+    
+<h1>Economic Outcomes by College Major - Introduction</h1>
 
-<a href="https://github.com/aiden-dickson/DACSS-601">Github Repository: https://github.com/aiden-dickson/DACSS-601</a>
+<img class="center" src="college_dorm.png" alt="College Dorm in Eve" width="600" height="300"/>
 
-<h1>This is a Heading</h1>
-<p>Analysis of Economic Outcomes by College Major.</p>
+<div>
+<a href="https://www.kaggle.com/tunguz/college-majors?select=majors-list.csv">Data Source [Kaggle] ,</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/aiden-dickson/DACSS-601">Project Repository on Github</a><br><br><br></div>
 
+<h2 style>Dataset</h2>
+<br><br>
+<p>Blah blah Dataset.</p>
+<br><br>
+<h2>Analysis</h2>
+<br><br>
+<p>Blah blah Analysis Here.</p>
+
+</body>

@@ -11,7 +11,6 @@ all_ages <- read.csv("data/all-ages.csv")
 
 first_tab <- tabPanel(
   "Introduction",
-  titlePanel("Economic Outcomes by College Major - Introduction"),
   includeMarkdown("intro.Rmd")
 )
 

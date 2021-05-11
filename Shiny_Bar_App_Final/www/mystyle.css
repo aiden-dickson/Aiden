@@ -1,0 +1,27 @@
+
+body {
+  background-color: #FFF8DC;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: bold;
+  color: #7F462C;
+}
+
+div {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: bold;
+  text-decoration: underline;
+  color: #7F462C;
+  font-family: times;
+}
+
+p {
+  color: black;
+  text-align: center;
+}
