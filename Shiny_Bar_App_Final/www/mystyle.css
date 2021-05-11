@@ -1,9 +1,7 @@
-
-.positioned {
-  position: relative;
-  top: 20px;
-  right: 1000px;
+div.a {
+  text-indent: 25%;
 }
+
 pre {
   max-height: 300px;
   overflow-y: auto;
@@ -35,5 +33,7 @@ p {
   color: black;
   text-align: center;
 }
+
+
 
 

@@ -9,14 +9,6 @@ output: html_document
 <head>
 <style>
 
-div.absolute {
-  position: absolute;
-  top: 1000px;
-  left: 100px;
-  width: 800px;
-  height: 100px;
-  
-}
 div.a {
   text-indent: 25%;
 }
