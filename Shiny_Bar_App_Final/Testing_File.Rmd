@@ -1,11 +1,53 @@
 ---
-title: "Testing File"
+title: "testing_file"
 author: "Aiden Dickson"
 date: "5/10/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{css, echo=FALSE, message = FALSE}
+.author,.title,.date,.output{
+    display: none;
+}
+pre {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 100px;
+}
+
+body {
+  background-color: #FFF8DC;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: bold;
+  color: #7F462C;
+}
+
+div {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  text-decoration: bold;
+  color: #7F462C;
+  font-family: times;
+}
+
+p {
+  color: black;
+  text-align: center;
+}
+```
+
+
+### Setting up Libraries
+```{r echo = FALSE, message = FALSE} 
 
 library(tidyverse)
 library(haven)
@@ -15,13 +57,17 @@ library(tinytex)
 library(ggplot2)
 library(GGally)
 library(vtable)
-library(googlesheets4) #in case want to try import of google sheets
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+library(knitr)
+library(googlesheets4) 
+library(rmarkdown)
+knitr::opts_chunk$set(echo = FALSE)
+
 ```
 
-## Input of Data and Changing Columns
-```{r all_ages}
+
+### Input of Data and Changing Columns
+```{r echo = FALSE, message = FALSE}
 all_ages <- read.csv("data/all-ages.csv")
 all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
                    "Unemployment_Rate" = "Unemployment_rate", "Percentile_25th" = "P25th", "Percentile_75th" = "P75th")
@@ -30,11 +76,11 @@ all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_ti
 
 
 
-## Tables
-```{r sum}
-sum_table<-st(all_ages)
-sum_table<- dataframe(sum_table)
+### Tables
+```{r echo = FALSE, message = FALSE}
+
+head(all_ages, 5)
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
