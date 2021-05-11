@@ -1,0 +1,36 @@
+---
+title: "plot_brief_discussion"
+author: "Aiden Dickson"
+date: "5/11/2021"
+output: html document
+---
+<head>
+<style>
+div.relative {
+  position: relative;
+  top: 150px;
+  right: 300px;
+  width: 800px;
+  height: 100px;
+} 
+
+div.absolute {
+  position: absolute;
+  top: 150px;
+  right: 300px;
+  width: 800px;
+  height: 100px;
+  
+}
+</style>
+</head>
+
+<body>
+
+<div class= "absolute">
+    <p>
+      Lorem Ipsum is simply dummy text. Lorem Ipsum has been the industry's when an unknown printer took a galley  It has survived not only five centuries, remaining essentially unchanged. It was of Letraset sheets containing Lorem Ipsum.</p>
+      
+</div>
+
+</body>

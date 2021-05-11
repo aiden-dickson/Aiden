@@ -1,0 +1,54 @@
+---
+title: "fifth_tab_analysis"
+author: "Aiden Dickson"
+date: "5/10/2021"
+output: 
+  html_document:
+    css: "mystyle.css"
+---
+
+```{css, echo=FALSE, message = FALSE}
+.author,.title,.date,.output{
+    display: none;
+}
+```
+
+
+### Setting up Libraries
+```{r echo = FALSE, message = FALSE} 
+
+library(tidyverse)
+library(haven)
+library(dplyr)
+library(knitr)
+library(tinytex)
+library(ggplot2)
+library(GGally)
+library(vtable)
+library(shiny)
+library(knitr)
+library(googlesheets4) 
+library(rmarkdown)
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+
+### Input of Data and Changing Columns
+```{r echo = FALSE, message = FALSE}
+all_ages <- read.csv("data/all-ages.csv")
+all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
+                   "Unemployment_Rate" = "Unemployment_rate", "Percentile_25th" = "P25th", "Percentile_75th" = "P75th")
+
+```
+
+
+
+### Tables
+```{r echo = FALSE, message = FALSE}
+
+head(all_ages, 5)
+
+```
+
+

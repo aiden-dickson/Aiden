@@ -5,10 +5,9 @@ account: aidenflowers
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4102323
-bundleId: 4584565
+bundleId: 4586985
 url: https://aidenflowers.shinyapps.io/Shiny_Bar_App_Final/
-when: 1620717691.14971
-lastSyncTime: 1620717691.14972
+when: 1620759806.68817
+lastSyncTime: 1620759806.68818
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: testing_file.Rmd

@@ -1,9 +1,5 @@
 
-.positioned {
-  position: relative;
-  top: 20px;
-  right: 1000px;
-}
+
 pre {
   max-height: 300px;
   overflow-y: auto;

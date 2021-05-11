@@ -48,7 +48,7 @@ main_content <- mainPanel(width = "12",
 second_tab <- tabPanel(
   "Dataset", 
    titlePanel("Economic Outcomes by College Major - Dataset"),
-  p("Use the selector input below to choose which variable you would like to see."),
+   includeMarkdown("plot_brief_discussion.Rmd"),
   
   sidebarLayout(
     sidebar_content,  #top
@@ -56,16 +56,37 @@ second_tab <- tabPanel(
   )
 )
 
-# Page 3 - Third Tab [testing] ---------------------------------------
+# Page 3 - Third Tab ---------------------------------------------
 third_tab <- tabPanel( 
   "Analysis I: X", 
   
   titlePanel("Economic Outcomes by College Major - Analysis I: Blah of X"),
   
-  includeMarkdown("testing_file.html")
+  includeMarkdown("third_tab_analysis.html")
   
 
 
+)
+
+# Page 4 - Fourth Tab [testing] ---------------------------------------
+fourth_tab <- tabPanel( 
+  "Analysis II: Y", 
+  
+  titlePanel("Economic Outcomes by College Major - Analysis II: Blah of Y"),
+  
+  includeMarkdown("fourth_tab_analysis.html")
+  
+  
+)
+
+# Page 5 - Fifth Tab [testing] ---------------------------------------
+fifth_tab <- tabPanel( 
+  "Analysis III: Z", 
+  
+  titlePanel("Economic Outcomes by College Major - Analysis III: Blah of Z"),
+  
+  includeMarkdown("fourth_tab_analysis.html")
+  
 )
 
 
@@ -74,5 +95,7 @@ ui <- navbarPage(
   "A Dickson - DACSS 601",
   first_tab,
   second_tab,
-  third_tab
+  third_tab,
+  fourth_tab,
+  fifth_tab
 )

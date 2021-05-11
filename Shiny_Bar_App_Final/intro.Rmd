@@ -7,23 +7,45 @@ output: html_document
 ---
 
 <head>
-<link rel="stylesheet" href="mystyle.css">
+<style>
+
+div.absolute {
+  position: absolute;
+  top: 1000px;
+  left: 100px;
+  width: 800px;
+  height: 100px;
+  
+}
+div.a {
+  text-indent: 25%;
+}
+</style>
 </head>
+
 <body>
     
 <h1>Economic Outcomes by College Major - Introduction</h1>
 
-<img class="center" src="college_dorm.png" alt="College Dorm in Eve" width="600" height="300"/>
-
+<div style="text-align: center"><img src="college_dorm.png" alt="College Dorm in Eve" width="600" height="300"/></div>
 <div>
+
 <a href="https://www.kaggle.com/tunguz/college-majors?select=majors-list.csv">Data Source [Kaggle] ,</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/aiden-dickson/DACSS-601">Project Repository on Github</a><br><br><br></div>
 
+
 <h2 style>Dataset</h2>
+
+<div class ="a">
 <br><br>
 <p>Blah blah Dataset.</p>
 <br><br>
+</div>
+
 <h2>Analysis</h2>
+
+<div class ="a">
 <br><br>
 <p>Blah blah Analysis Here.</p>
+</div>
 
 </body>
