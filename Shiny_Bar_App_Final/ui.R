@@ -47,7 +47,7 @@ main_content <- mainPanel(width = "12",
 #Second Panel, using top section input, below section plot
 second_tab <- tabPanel(
   "Dataset", 
-   titlePanel("Economic Outcomes of Computer Science and Math College Majors - Datasets"),
+   titlePanel("Economic Outcomes of Computer Science and Math College Majors - Dataset"),
    includeMarkdown("plot_brief_discussion.Rmd"),
   
   sidebarLayout(
