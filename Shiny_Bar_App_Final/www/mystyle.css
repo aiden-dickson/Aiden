@@ -1,5 +1,7 @@
-div.a {
-  text-indent: 25%;
+p {
+  font-weight: bold;
+  font-family: verdana;
+  font-size: 22px;
 }
 
 pre {
@@ -12,26 +14,23 @@ pre[class] {
 }
 
 body {
-  background-color: #FFF8DC;
+  background-color: #f5edca;
+  
 }
+#FF8DC
 
 h1 {
   text-align: center;
-  text-decoration: bold;
+  font-weight: bold;
   color: #7F462C;
 }
 
 
 h2 {
   text-align: center;
-  text-decoration: bold;
+  font-weight: bold;
   color: #7F462C;
   font-family: times;
-}
-
-p {
-  color: black;
-  text-align: center;
 }
 
 

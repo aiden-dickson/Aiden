@@ -38,7 +38,7 @@ main_content <- mainPanel(width = "12",
    # width = "10",
     # Output: Tabset w/ plot, summary, and table (UI)----
     tabsetPanel(type = "tabs", 
-                tabPanel("Plot", plotOutput("plot", height='800')),
+                tabPanel("Plot", plotOutput("plot", height='700')),
                 tabPanel("Table", tableOutput("table")),
                 tabPanel("Summary", verbatimTextOutput('summary'))
     )
@@ -47,7 +47,7 @@ main_content <- mainPanel(width = "12",
 #Second Panel, using top section input, below section plot
 second_tab <- tabPanel(
   "Dataset", 
-   titlePanel("Economic Outcomes by College Major - Dataset"),
+   titlePanel("Economic Outcomes of Computer Science and Math College Majors - Datasets"),
    includeMarkdown("plot_brief_discussion.Rmd"),
   
   sidebarLayout(
@@ -58,9 +58,10 @@ second_tab <- tabPanel(
 
 # Page 3 - Third Tab ---------------------------------------------
 third_tab <- tabPanel( 
-  "Analysis I: X", 
+  "Analysis I: Within Category", 
   
-  titlePanel("Economic Outcomes by College Major - Analysis I: Blah of X"),
+  titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis I: 
+             Comparing Majors within Category"),
   
   includeMarkdown("third_tab_analysis.html")
   
@@ -70,24 +71,25 @@ third_tab <- tabPanel(
 
 # Page 4 - Fourth Tab [testing] ---------------------------------------
 fourth_tab <- tabPanel( 
-  "Analysis II: Y", 
+  "Analysis II: Outside Categories", 
   
-  titlePanel("Economic Outcomes by College Major - Analysis II: Blah of Y"),
+  titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis II: Comparing Category vs Outside Categories"),
   
-  includeMarkdown("fourth_tab_analysis.html")
+  #includeMarkdown("fourth_tab_analysis.html")
+  includeMarkdown("maintenance.Rmd")
   
   
 )
 
 # Page 5 - Fifth Tab [testing] ---------------------------------------
-fifth_tab <- tabPanel( 
-  "Analysis III: Z", 
+#fifth_tab <- tabPanel( 
+ # "Analysis III: Z", 
   
-  titlePanel("Economic Outcomes by College Major - Analysis III: Blah of Z"),
+ # titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis III: Demographic Analysis of Category"),
   
-  includeMarkdown("fourth_tab_analysis.html")
+ # includeMarkdown("fourth_tab_analysis.html")
   
-)
+#)
 
 
 #  All tabs used for User Interface      ---------------------------------------
@@ -96,6 +98,6 @@ ui <- navbarPage(
   first_tab,
   second_tab,
   third_tab,
-  fourth_tab,
-  fifth_tab
+  fourth_tab
+  #fifth_tab
 )
