@@ -11,9 +11,16 @@ output:
 .author,.title,.date,.output{
     display: none;
 }
+
+p.centerP{
+  
+   text-align: center;
+}
+
+
 ```
 
-### Setting up Libraries
+<p class="centerP">Setting up Libraries</p>
 ```{r echo = FALSE, message = FALSE} 
 
 library(tidyverse)
@@ -33,7 +40,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-### Input of Data and Changing Columns
+<p class="centerP">Input of Data and Changing Columns</p>
 ```{r echo = FALSE, message = FALSE}
 all_ages <- read.csv("data/all-ages.csv")
 all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 

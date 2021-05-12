@@ -1,9 +1,11 @@
 ---
-title: "fifth_tab_analysis"
+title: "third_tab_analysis"
 author: "Aiden Dickson"
 date: "5/10/2021"
-output:  html_document
-   css: "mystyle.css"
+output:
+  html_document:
+    css: mystyle.css
+  pdf_document: default
 ---
 
 ```{css, echo=FALSE, message = FALSE}

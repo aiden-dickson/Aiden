@@ -5,16 +5,14 @@ library(ggplot2)#for histogram
 library(dplyr)
 library(DT)
 library(vtable)
-library(shiny)
-library(ggplot2)
+all_ages <- read.csv("data/all-ages.csv")
+all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
+                   "Unemployment_Rate" = "Unemployment_rate", "Percentile_25th" = "P25th", "Percentile_75th" = "P75th")
 
 # Create server -------------------------------------------------------
 
 server <- function(input, output) {
-
-    all_ages <- read.csv("data/all-ages.csv")
-    all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
-                       "Unemployment_Rate" = "Unemployment_rate", "Percentile_25th" = "P25th", "Percentile_75th" = "P75th")
+    
     
     
     # Generate a plot of the data ----
@@ -52,32 +50,4 @@ server <- function(input, output) {
    output$table <- renderTable({
        all_ages
    })
-   #---------------------------------End plot, table, summary for tab 2, start plot tab 3 -----------
-   dataset <- reactive({
-       all_ages[sample(nrow(all_ages), input$sampleSize),]
-   })
-   
-   output$plot2 <- renderPlot({
-       
-       p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point() + theme(axis.text.y = element_text(size = 10, face = "bold", hjust = 1, vjust= 1),
-                                                                                       legend.direction = "horizontal", legend.position = "bottom") + 
-           theme(axis.text.x = element_text(size = 6, color = "black", face = "bold")) + 
-           theme(axis.text.x = element_text(angle = 75, hjust = 1)) 
-       
-       if (input$color!= 'None')
-           p <- p + aes_string(color=input$color)
-       
-       facets <- paste(input$facet_row, '~', input$facet_col)
-       if (facets != '. ~ .')
-           p <- p + facet_grid(facets)
-       
-       if (input$jitter)
-           p <- p + geom_jitter()
-       if (input$smooth)
-           p <- p + geom_smooth()
-       
-       print(p)
-       
-   }, height=700)
-   
 }

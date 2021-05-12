@@ -7,13 +7,6 @@ output: html_document
 ---
 <head>
 <style>
-
-h1.h1intro{
-  text-align: center;
-  font-weight: bold;
-  color: #7F462C;
-}
-
 p {
   font-family: verdana;
   font-size: 18px;
@@ -23,9 +16,7 @@ div.a {
     width: 80%;
     margin-left: 10%;
     overflow-wrap: break-word;
-}
-div.c {
-   text-align: center;
+    
 }
 
 </style>
@@ -33,11 +24,11 @@ div.c {
 
 <body>
     
-<h1 class="h1intro">Economic Outcomes of Computer Science and Math College Majors - Introduction</h1>
+<h1>Economic Outcomes of Computer Science and Math College Majors - Introduction</h1>
 <br><br>
-<div class="c"><img src="college_dorm.png" alt="College Dorm in Eve" width="600" height="300"/></div>
+<div style="text-align: center"><img src="college_dorm.png" alt="College Dorm in Eve" width="600" height="300"/></div>
 <br>
-<div class="c">
+<div>
 <a href="http://www.census.gov/programs-surveys/acs/data/pums.html">Data Source: United Stated Census Bureau</a></p>    <a href="https://github.com/aiden-dickson/DACSS-601">Project Repository on Github</a><br><br></div>
 
 

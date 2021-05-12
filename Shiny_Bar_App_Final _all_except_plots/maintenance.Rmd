@@ -29,7 +29,7 @@ div.a {
 <br><br>
 <div style="text-align: center"><img src="maintenance.png" alt="College Dorm in Eve" width="600" height="300"/></div>
 <br>
-<div class="c">
+<div>
 <a href="http://www.census.gov/programs-surveys/acs/data/pums.html">United Stated Census Bureau</a></p>&nbsp;&nbsp;<a href="https://github.com/aiden-dickson/DACSS-601">Project Repository on Github</a><br><br><br></div>
 
 

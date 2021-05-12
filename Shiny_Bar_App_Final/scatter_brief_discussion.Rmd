@@ -1,0 +1,43 @@
+---
+title: "scatter_brief_discussion"
+author: "Aiden Dickson"
+date: "5/11/2021"
+output: html_document
+---
+<head>
+<style>
+
+p.a{
+  font-family: verdana;
+  font-size: 14px;
+}
+
+div.relscatter {
+  position: relative;
+  top: 100px;
+  right: 300px;
+  width: 800px;
+  height: 100px;
+} 
+
+div.absolscatter {
+  position: absolute;
+  top: 850px;
+  left: 150px;
+  width: 800px;
+  height: 100px;
+  overflow-wrap: break-word;
+  
+}
+</style>
+</head>
+
+<body>
+
+<div class= "absolscatter">
+    <p class= "a">
+      These plotting 'widgets' are a great way to familiarize with the data before the analysis, to see it from all angles through several variable combinations. Small caveat that this scatter plot will also allow the user to select what is impossible to depict clearly and will still make an attempt, eg trying to squeeze all categories of Major on the y-axis.  A good rule of thumb for use is to select categorical variables for the x axis (eg Major) and numerical values on a continuum, on the y (eg Median Income).</p>
+      
+</div>
+
+</body>
