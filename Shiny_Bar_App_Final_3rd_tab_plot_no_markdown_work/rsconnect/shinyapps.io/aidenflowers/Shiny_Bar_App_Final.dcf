@@ -1,0 +1,13 @@
+name: Shiny_Bar_App_Final
+title:
+username:
+account: aidenflowers
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4102323
+bundleId: 4590790
+url: https://aidenflowers.shinyapps.io/Shiny_Bar_App_Final/
+when: 1620837273.66994
+lastSyncTime: 1620837273.66995
+asMultiple: FALSE
+asStatic: FALSE
