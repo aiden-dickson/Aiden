@@ -36,7 +36,7 @@ div.absolute {
 
 <div class= "absolute">
     <p class= "a">
-      This dataset is the result of a survey of all ages of participant who earned a bachelor's degree in the labeled majors. Select the y variable statistics within each Major: 'Total' for 'Total Bachelors' View, 'Employed' for how many 'Employed', 'Employed Full Time Year Round' or 'Unemployed' for how many fit this description at time of survey, 'Unemployment Rate' for the ratio per Major, Median for the Median Earnings, or Percentile 25th or 75th, for the average income level in these respective eschelons, per major at the time of survey.</p>
+      This dataset depicted on 'Plot tab' and 'Table tab' is the result of a survey of all ages of participant who earned a bachelor's degree in the labeled majors. On 'Plot tab' select the y variable statistics within each Major: 'Total' for 'Total Bachelors' View, 'Employed' for how many 'Employed', 'Employed Full Time Year Round' or 'Unemployed' for how many fit this description at time of survey, 'Unemployment Rate' for the ratio per Major, Median for the Median Earnings, or Percentile 25th or 75th, for the average income level in these respective eschelons, per major at the time of survey.</p>
       
 </div>
 

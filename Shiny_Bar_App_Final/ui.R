@@ -38,7 +38,7 @@ main_content <- mainPanel(width = "12",
    # width = "10",
     # Output: Tabset w/ plot, summary, and table (UI)----
     tabsetPanel(type = "tabs", 
-                tabPanel("Plot", plotOutput("plot", height='700')),
+                tabPanel("Plot", plotOutput("plot", height='650')),
                 tabPanel("Table", tableOutput("table")),
                 tabPanel("Summary", verbatimTextOutput('summary'))
     )
