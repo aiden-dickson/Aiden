@@ -19,17 +19,23 @@ first_tab <- tabPanel(
 
 
 # Page  2 - Second Tab - All Ages------------begin plot tab 2------------------------------------
-select_values <- colnames(all_ages <-rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
-                    "Unemployment_Rate" = "Unemployment_rate",  "Percentile_25th" = "P25th", "Percentile_75th" = "P75th"))
-select_values <- select_values[! select_values %in% c('Major_code', 'Major_category','Major')] #Removing unwanted columns
+#select_values <- colnames(all_ages <-rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
+  #                  "Unemployment_Rate" = "Unemployment_rate",  "Percentile_25th" = "P25th", "Percentile_75th" = "P75th"))
+#select_values <- select_values[! select_values %in% c('Major_code', 'Major_category','Major')] #Removing unwanted columns
 
 #input section top
 sidebar_content1 <- sidebarPanel(
  selectInput(
     "y_var",
      label = "Y Variable",
-     choices = select_values,
+     choices =  c("Total"="Total", "Employed", 
+                  "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
+                  "Unemployment Rate"="Unemployment_Rate",
+                  "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th", 
+                  "Major Category"="Major_category"),
      selected = "Median",
+    
+  
 
  
   )
@@ -63,23 +69,30 @@ second_tab <- tabPanel(
 
 third_tab <- tabPanel(
   "Dataset Scatter",
-  titlePanel("Economic Outcomes of Computer Science and Math College Majors - Dataset Scatter Plot"),
+  titlePanel("Economic Outcomes of Computer Science and Math College Major Categories - Dataset Scatter Plot"),
   includeMarkdown("scatter_brief_discussion.Rmd"),
   
   sidebarPanel(
     
-    sliderInput('sampleSize', 'Sample Size', min=40, max=nrow(all_ages),
-                value=min(1, nrow(all_ages)), step=10, round=0),
+    sliderInput('sampleSize', 'Sample Size', min=50, max=nrow(all_ages),
+                value=min(50, nrow(all_ages)), step=10, round=0),
     
-    selectInput('x', 'X', names(all_ages)),
-    selectInput('y', 'Y', names(all_ages), names(all_ages)[[2]]),
-    selectInput('color', 'Color', c('None', names(all_ages))),
+    selectInput('x', 'X', c("Major Category"="Major_category", "Total"="Total", "Employed", 
+                            "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
+                            "Unemployment Rate"="Unemployment_Rate",
+                            "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th"), names(all_ages)[[2]]),
+    selectInput('y', 'Y', c("Total"="Total", "Employed", 
+                            "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
+                            "Unemployment Rate"="Unemployment_Rate",
+                            "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th", 
+                            "Major Category"="Major_category"))
+    ,
+    selectInput('color', 'Color', c("Major Category"="Major_category", "Total"="Total", "Employed", 
+                                    "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
+                                    "Unemployment Rate"="Unemployment_Rate",
+                                    "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th"))
     
-    checkboxInput('jitter', 'Jitter'),
-    checkboxInput('smooth', 'Smooth'),
     
-    selectInput('facet_row', 'Facet Row', c(None='.', names(all_ages))),
-    selectInput('facet_col', 'Facet Column', c(None='.', names(all_ages)))
   ),
   
   mainPanel(
@@ -87,7 +100,7 @@ third_tab <- tabPanel(
   )
 )
 
-# Page 3 - Third Tab ----------------------------------------------------------------------------
+# Page 4 - Fourth Tab ----------------------------------------------------------------------------
 fourth_tab <- tabPanel( 
   "Analysis I: Within Category", 
   
@@ -95,31 +108,38 @@ fourth_tab <- tabPanel(
              Comparing Majors within Category"),
   
   includeMarkdown("fourth_tab_analysis.html")
-  
-
-
-)
-
-# Page 4 - Fourth Tab [testing] ---------------------------------------
-fifth_tab <- tabPanel( 
-  "Analysis II: Outside Categories", 
-  
-  titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis II: Comparing Category vs Outside Categories"),
-  
-  #includeMarkdown("fourth_tab_analysis.html")
-  includeMarkdown("maintenance.Rmd")
-  
+ 
   
 )
 
 # Page 5 - Fifth Tab [testing] ---------------------------------------
 #fifth_tab <- tabPanel( 
+ # "Analysis II: Outside Categories", 
+  
+#  titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis II: Comparing Category vs Outside Categories"),
+  
+  #includeMarkdown("fourth_tab_analysis.html")
+
+#)
+
+# Page 6 - Sixth Tab [testing] ---------------------------------------
+#sixth_tab <- tabPanel( 
  # "Analysis III: Z", 
   
  # titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis III: Demographic Analysis of Category"),
   
- # includeMarkdown("fourth_tab_analysis.html")
+ # includeMarkdown("fifth_tab_analysis.html")
   
+#)
+
+# Page 5 - Seventh Tab [testing] ---------------------------------------
+#seventh_tab <- tabPanel( 
+# "Analysis IV: Z", 
+
+# titlePanel("Economic Outcomes of Computer Science and Math College Majors - Analysis IV: x"),
+
+# includeMarkdown("sixth_tab_analysis.html")
+
 #)
 
 
@@ -129,7 +149,9 @@ ui <- navbarPage(
   first_tab,
   second_tab,
   third_tab,
-  fourth_tab,
-  fifth_tab
+  fourth_tab
+  #fifth_tab
+  #sixth_tab
+  #seventh
 
 )

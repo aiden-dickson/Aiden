@@ -7,20 +7,41 @@ output:
     css: "mystyle.css"
 ---
 
+
 ```{css, echo=FALSE, message = FALSE}
 .author,.title,.date,.output{
     display: none;
 }
 
-p.centerP{
+p.stylePmd{
   
-   text-align: center;
+  text-align: center;
+  font-size: 22px;
+  color: navy;
+  font-family: verdana;
+  font-weight: bold;
+}
+
+div.styledmd{
+  text-align: center;
 }
 
 
 ```
+<br>
+<div class="styledmd"><img src="maintenance.png" alt="Maintenance" width="600" height="300"/>
+<br>
+<a href="http://www.census.gov/programs-surveys/acs/data/pums.html">United Stated Census Bureau</a></p> <a href="https://github.com/aiden-dickson/DACSS-601">Project Repository on Github</a><br><br><br>
+<h2>Under Construction!  Appreciate Your Patience</h2>
+</div>
 
-<p class="centerP">Setting up Libraries</p>
+
+
+
+
+
+
+<p class="stylePmd">Setting up Libraries</p>
 ```{r echo = FALSE, message = FALSE} 
 
 library(tidyverse)
@@ -40,7 +61,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-<p class="centerP">Input of Data and Changing Columns</p>
+<p class="stylePmd">Input of Data and Changing Columns</p>
 ```{r echo = FALSE, message = FALSE}
 all_ages <- read.csv("data/all-ages.csv")
 all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_time_year_round", 
@@ -50,7 +71,7 @@ all_ages <- rename(all_ages, "Employed_Full_Time_Year_Round" = "Employed_full_ti
 
 
 
-### Tables
+<p class="stylePmd">Input of Data and Changing Columns</p>
 ```{r echo = FALSE, message = FALSE}
 
 head(all_ages, 5)
