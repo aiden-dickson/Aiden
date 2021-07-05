@@ -37,7 +37,7 @@ div.absolscatter {
 
 <div class= "absolscatter">
     <p class= "a">
-      This plot will give a variable list comparison of the super-set categories of major to get an overall view of where Computer Science and Mathematics stand in reference. Small caveat that this scatter plot will also allow the user to select what is impossible to depict clearly and will still make an attempt, eg trying to squeeze all categories of Major on the y-axis.  A good rule of thumb for use is to select categorical variables for the x axis (eg Major) and numerical values on a continuum, on the y (eg Median Income). *Majors were intentionally removed because all could not be represented if sample size increased.</p>
+     </p>
       
 </div>
 

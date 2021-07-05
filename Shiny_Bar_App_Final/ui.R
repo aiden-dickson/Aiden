@@ -28,11 +28,7 @@ sidebar_content1 <- sidebarPanel(
  selectInput(
     "y_var",
      label = "Y Variable",
-     choices =  c("Total"="Total", "Employed", 
-                  "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
-                  "Unemployment Rate"="Unemployment_Rate",
-                  "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th", 
-                  "Major Category"="Major_category"),
+     choices =  c("Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th","Unemployment Rate"="Unemployment_Rate"),
      selected = "Median",
     
   
@@ -47,7 +43,7 @@ main_content1 <- mainPanel(width = "12",
    # width = "10",
     # Output: Tabset w/ plot, summary, and table (UI)----
     tabsetPanel(type = "tabs", 
-                tabPanel("Plot", plotOutput("plot", height='650')),
+                tabPanel("Plot", plotOutput("plot", height='530')),
                 tabPanel("Table", tableOutput("table"))
                ## tabPanel("Summary", verbatimTextOutput('summary'))   ##Using later if can figure out formatting
     )
@@ -77,20 +73,11 @@ third_tab <- tabPanel(
     sliderInput('sampleSize', 'Sample Size', min=50, max=nrow(all_ages),
                 value=min(50, nrow(all_ages)), step=10, round=0),
     
-    selectInput('x', 'X', c("Major Category"="Major_category", "Total"="Total", "Employed", 
-                            "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
-                            "Unemployment Rate"="Unemployment_Rate",
+    selectInput('x', 'X', c("Major Category"="Major_category",
                             "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th"), names(all_ages)[[2]]),
-    selectInput('y', 'Y', c("Total"="Total", "Employed", 
-                            "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
-                            "Unemployment Rate"="Unemployment_Rate",
-                            "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th", 
-                            "Major Category"="Major_category"))
-    ,
-    selectInput('color', 'Color', c("Major Category"="Major_category", "Total"="Total", "Employed", 
-                                    "Employed Full Time Year Round"="Employed_Full_Time_Year_Round","Unemployed",
-                                    "Unemployment Rate"="Unemployment_Rate",
-                                    "Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th"))
+    selectInput('y', 'Y', c("Median","25th Percentile"="Percentile_25th","75th Percentile"="Percentile_75th")),
+    selectInput('color', 'Color', c("Median","25th Percentile"="Percentile_25th",
+                                    "75th Percentile"="Percentile_75th"))
     
     
   ),

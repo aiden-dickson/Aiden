@@ -27,19 +27,18 @@ server <- function(input, output) {
     
     
        
-      
-
-      all_ages$Major_category <- factor(all_ages$Major_category, levels = sort(unique(all_ages$Major_category)), ordered=TRUE)
-      
-      ggplot(data = all_ages, aes_string(x='Major_category', y=input$y_var, fill="Major_category")) +
-         geom_bar(stat="identity", width=1, color="black") +
-         labs(x="Major Category", y=input$y_var) + theme(axis.text.y = element_text(size = 10, face = "bold", hjust = 1, vjust= 1),
-                                                legend.direction = "horizontal", legend.position = "top") + 
-         theme(axis.text.x = element_text(size = 14, color = "black", face = "bold")) + 
+     all_ages$Major <- factor(all_ages$Major,
+        levels = all_ages$Major[order(all_ages$Major_category)])
+     
+     ggplot(data = all_ages, aes_string(x="Major", y=input$y_var, fill="Major_category")) +
+       geom_bar(stat="identity", width=1, color="black") +
+    labs(x="Major", y=input$y_var) + theme(axis.text.y = element_text(size = 10, face = "bold", hjust = 1, vjust= 1),
+                                           legend.direction = "horizontal", legend.position = "top") + 
+         theme(axis.text.x = element_text(size = 6, color = "black", face = "bold")) + 
          theme(axis.text.x = element_text(angle = 75, hjust = 1))  
-      ##scale_y_continuous(breaks = round(seq(min(all_ages$y), max(all_ages$y), by = 2000),1))
-      ##+ scale_color_manual(values = c("#000000"))
-      ##+ facet_wrap(~Major_category, scales = "free_x")
+         ##scale_y_continuous(breaks = round(seq(min(all_ages$y), max(all_ages$y), by = 2000),1))
+     ##+ scale_color_manual(values = c("#000000"))
+     ##+ facet_wrap(~Major_category, scales = "free_x")
        
    })
    
@@ -60,10 +59,9 @@ server <- function(input, output) {
    
    output$plot2 <- renderPlot({
        
-       p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point() +
-          scale_color_gradientn(colours = rainbow(5)) + theme(axis.text.y = element_text(size = 10, face = "bold", hjust = 1, vjust= 1),
-                                                                                       legend.direction = "horizontal", legend.position = "top") + 
-           theme(axis.text.x = element_text(size = 12, color = "black", face = "bold")) + 
+       p <- ggplot(dataset(), aes_string(x=input$x, y=input$y)) + geom_point() + theme(axis.text.y = element_text(size = 10, face = "bold", hjust = 1, vjust= 1),
+                                                                                       legend.direction = "horizontal", legend.position = "bottom") + 
+           theme(axis.text.x = element_text(size = 14, color = "black", face = "bold")) + 
            theme(axis.text.x = element_text(angle = 75, hjust = 1)) + guides(color = guide_legend(order=1),
                                                                               size = guide_legend(order=2),
                                                                               shape = guide_legend(order=3))
@@ -74,6 +72,6 @@ server <- function(input, output) {
        
        print(p)
        
-   }, height=530)
+   }, height=700)
    
 }
